@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 tags: style, admin, administration, CSS, custom, dashboard, login, free, Formatting
 Requires at least: 3.8
 Tested up to: 4.8
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,10 @@ This is caused by an old browser version.  I suggest you update your browser or 
 7. Christmas styled Admin Panel login page, using 'Style Admin' plugin.
 
 == Changelog ==
+
+= 1.4.3 =
+* Removed erronous </div> end tag for settings page
+* Moved <form> tag for settings page outside '<div class="tab-content">' to conform better with HTML standards.
 
 = 1.4.2 =
 * Tested with version 4.6 of Wordpress

@@ -3,7 +3,7 @@
  * Plugin Name: Style Admin
  * Plugin URI: http://www.fuzzguard.com.au/plugins/style-admin
  * Description: Used to style the admin panel without having to edit files
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author: Benjamin Guy
  * Author URI: http://www.fuzzguard.com.au
  * Text Domain: style-admin
@@ -221,91 +221,88 @@ function hideSelectColour(id) {
         <li><a href="#tab3"><?php _e("Text Colours", 'style-admin' ); ?></a></li>
         <li><a href="#tab4"><?php _e("Styling Options", 'style-admin' ); ?></a></li>
     </ul>
+   <form name="form1" method="post" action="">
+   <div class="tab-content">
+		<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
+		<div id="tab1" class="tab active">
+			<hr />
+			<h3> <?php echo __( 'Image upload', 'style-admin' ); ?> </h3>
+			<table class="form-table">
+				<tbody>
+					<tr valign="top" style="height: 100px;">
+						<th scope="row"><label><?php _e("Login page logo:  ", 'style-admin' ); ?></label></th>
+						<td>
+							<input id="admin_login_logo" class="upload_image" type="text" size="36" name="<?php echo $data_field_name; ?>[style_admin_login_logo]" value="<?php echo $opt_val['style_admin_login_logo']; ?>" />
+							<input id="admin_login_logo_button" class="upload_image_button button" type="button" value="<?php _e("Upload Image", 'style-admin' ); ?>" />
+							<p class="description"><?php _e("Enter an URL or upload an image. MAX image size: 300x80", 'style-admin' ); ?></p>
+						</td>
+					</tr>
 
-    <div class="tab-content">
-<form name="form1" method="post" action="">
-<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
-<div id="tab1" class="tab active">
-<hr />
-<h3> <?php echo __( 'Image upload', 'style-admin' ); ?> </h3>
-<table class="form-table">
-<tbody>
+					<tr valign="top" style="height: 100px;">
+						<th scope="row"><label><?php _e("Admin panel menu logo:  ", 'style-admin' ); ?></label></th>
+							<td>
+								<input id="admin_menu_logo" class="upload_image" type="text" size="36" name="<?php echo $data_field_name; ?>[style_admin_menu_logo]" value="<?php echo $opt_val['style_admin_menu_logo']; ?>" />
+								<input id="admin_menu_logo_button" class="upload_image_button button"  type="button" value="<?php _e("Upload Image", 'style-admin' ); ?>" />
+								<p class="description"><?php _e("Enter an URL or upload an image. MAX image size: 300x80", 'style-admin' ); ?></p>
 
-<tr valign="top" style="height: 100px;">
-<th scope="row"><label><?php _e("Login page logo:  ", 'style-admin' ); ?></label></th>
-<td>
-<input id="admin_login_logo" class="upload_image" type="text" size="36" name="<?php echo $data_field_name; ?>[style_admin_login_logo]" value="<?php echo $opt_val['style_admin_login_logo']; ?>" />
-<input id="admin_login_logo_button" class="upload_image_button button" type="button" value="<?php _e("Upload Image", 'style-admin' ); ?>" />
-<p class="description"><?php _e("Enter an URL or upload an image. MAX image size: 300x80", 'style-admin' ); ?></p>
-</td>
-</tr>
+							</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="tab2" class="tab">
+		<hr />
 
-<tr valign="top" style="height: 100px;">
-<th scope="row"><label><?php _e("Admin panel menu logo:  ", 'style-admin' ); ?></label></th>
-<td>
-<input id="admin_menu_logo" class="upload_image" type="text" size="36" name="<?php echo $data_field_name; ?>[style_admin_menu_logo]" value="<?php echo $opt_val['style_admin_menu_logo']; ?>" />
-<input id="admin_menu_logo_button" class="upload_image_button button"  type="button" value="<?php _e("Upload Image", 'style-admin' ); ?>" />
-<p class="description"><?php _e("Enter an URL or upload an image. MAX image size: 300x80", 'style-admin' ); ?></p>
+		<h3> <?php echo __( 'Background Colours', 'style-admin' ); ?> </h3>
+			<table class="form-table">
+				<tbody>
+					<tr valign="top" style="height: 100px;">
+						<th scope="row"><label><?php _e("Login background colour", 'style-admin' ); ?>:  </label></th>
+						<td>
+							<input type="radio" name="<?php echo $data_field_name; ?>[BGColour_On]" <?php if ($opt_val['BGColour_On'] != 'C') echo "checked";  ?> value="D" onClick="hideSelectColour('<?php echo $data_field_name; ?>[BGColour]')" />
+							<label for="<?php echo $data_field_name; ?>[BGColour_On]"><?php _e( 'Default', 'style-admin'); ?>
+							</label>
+							<input type="radio" name="<?php echo $data_field_name; ?>[BGColour_On]" <?php checked( 'C', $opt_val['BGColour_On'] ); ?> value="C" onClick="showSelectColour('<?php echo $data_field_name; ?>[BGColour]')" />
+							<label for="<?php echo $data_field_name; ?>[BGColour_On]"><?php _e( 'Custom', 'style-admin'); ?>
+							</label>
+							<div <?php if ($opt_val['BGColour_On']!='C') echo 'style="display: none;"'; ?> id="<?php echo $data_field_name; ?>[BGColour]">
+								<input type="text" value="<?php echo $opt_val['BGColour']; ?>" name="<?php echo $data_field_name; ?>[BGColour]" class="my-color-picker" data-default-color="<?php echo $opt_val['BGColour']; ?>" />
+							</div>
+							<p class="description"><?php _e("Login background colour", 'style-admin' ); ?></p>
+						</td>
+					</tr>
 
-</td>
-</tr>
+					<tr valign="top" style="height: 100px;">
+						<th scope="row"><label><?php _e("Login Box background colour", 'style-admin' ); ?>:  </label></th>
+						<td>
+							<input type="radio" name="<?php echo $data_field_name; ?>[BoxColour_On]" <?php if ($opt_val['BoxColour_On'] != 'C') echo "checked";  ?> value="D" onClick="hideSelectColour('<?php echo $data_field_name; ?>[BoxColour]')" />
+							<label for="<?php echo $data_field_name; ?>[BoxColour_On]"><?php _e( 'Default', 'style-admin'); ?>
+							</label>
+							<input type="radio" name="<?php echo $data_field_name; ?>[BoxColour_On]" <?php checked( 'C', $opt_val['BoxColour_On'] ); ?> value="C" onClick="showSelectColour('<?php echo $data_field_name; ?>[BoxColour]')" />
+							<label for="<?php echo $data_field_name; ?>[BoxColour_On]"><?php _e( 'Custom', 'style-admin'); ?>
+							</label>
+							<div <?php if ($opt_val['BoxColour_On']!='C') echo 'style="display: none;"'; ?> id="<?php echo $data_field_name; ?>[BoxColour]">
+								<input type="text" value="<?php echo $opt_val['BoxColour']; ?>" name="<?php echo $data_field_name; ?>[BoxColour]" class="my-color-picker" data-default-color="<?php echo $opt_val['BoxColour']; ?>" />
+							</div>
+							<p class="description"><?php _e("Login Box background colour", 'style-admin' ); ?></p>
+						</td>
+					</tr>
 
-</tbody>
-</table>
-</div>
-<div id="tab2" class="tab">
-<hr />
-
-<h3> <?php echo __( 'Background Colours', 'style-admin' ); ?> </h3>
-<table class="form-table">
-<tbody>
-<tr valign="top" style="height: 100px;">
-<th scope="row"><label><?php _e("Login background colour", 'style-admin' ); ?>:  </label></th>
-<td>
-<input type="radio" name="<?php echo $data_field_name; ?>[BGColour_On]" <?php if ($opt_val['BGColour_On'] != 'C') echo "checked";  ?> value="D" onClick="hideSelectColour('<?php echo $data_field_name; ?>[BGColour]')" />
-<label for="<?php echo $data_field_name; ?>[BGColour_On]"><?php _e( 'Default', 'style-admin'); ?>
-</label>
-<input type="radio" name="<?php echo $data_field_name; ?>[BGColour_On]" <?php checked( 'C', $opt_val['BGColour_On'] ); ?> value="C" onClick="showSelectColour('<?php echo $data_field_name; ?>[BGColour]')" />
-<label for="<?php echo $data_field_name; ?>[BGColour_On]"><?php _e( 'Custom', 'style-admin'); ?>
-</label>
-<div <?php if ($opt_val['BGColour_On']!='C') echo 'style="display: none;"'; ?> id="<?php echo $data_field_name; ?>[BGColour]">
-<input type="text" value="<?php echo $opt_val['BGColour']; ?>" name="<?php echo $data_field_name; ?>[BGColour]" class="my-color-picker" data-default-color="<?php echo $opt_val['BGColour']; ?>" />
-</div>
-<p class="description"><?php _e("Login background colour", 'style-admin' ); ?></p>
-</td>
-</tr>
-
-<tr valign="top" style="height: 100px;">
-<th scope="row"><label><?php _e("Login Box background colour", 'style-admin' ); ?>:  </label></th>
-<td>
-<input type="radio" name="<?php echo $data_field_name; ?>[BoxColour_On]" <?php if ($opt_val['BoxColour_On'] != 'C') echo "checked";  ?> value="D" onClick="hideSelectColour('<?php echo $data_field_name; ?>[BoxColour]')" />
-<label for="<?php echo $data_field_name; ?>[BoxColour_On]"><?php _e( 'Default', 'style-admin'); ?>
-</label>
-<input type="radio" name="<?php echo $data_field_name; ?>[BoxColour_On]" <?php checked( 'C', $opt_val['BoxColour_On'] ); ?> value="C" onClick="showSelectColour('<?php echo $data_field_name; ?>[BoxColour]')" />
-<label for="<?php echo $data_field_name; ?>[BoxColour_On]"><?php _e( 'Custom', 'style-admin'); ?>
-</label>
-<div <?php if ($opt_val['BoxColour_On']!='C') echo 'style="display: none;"'; ?> id="<?php echo $data_field_name; ?>[BoxColour]">
-<input type="text" value="<?php echo $opt_val['BoxColour']; ?>" name="<?php echo $data_field_name; ?>[BoxColour]" class="my-color-picker" data-default-color="<?php echo $opt_val['BoxColour']; ?>" />
-</div>
-<p class="description"><?php _e("Login Box background colour", 'style-admin' ); ?></p>
-</td>
-</tr>
-
-<tr valign="top" style="height: 100px;">
-<th scope="row"><label><?php _e("Username/Password Box background colour", 'style-admin' ); ?>:  </label></th>
-<td>
-<input type="radio" name="<?php echo $data_field_name; ?>[InputColour_On]" <?php if ($opt_val['InputColour_On'] != 'C') echo "checked";  ?> value="D" onClick="hideSelectColour('<?php echo $data_field_name; ?>[InputColour]')" />
-<label for="<?php echo $data_field_name; ?>[InputColour_On]"><?php _e( 'Default', 'style-admin'); ?>
-</label>
-<input type="radio" name="<?php echo $data_field_name; ?>[InputColour_On]" <?php checked( 'C', $opt_val['InputColour_On'] ); ?> value="C" onClick="showSelectColour('<?php echo $data_field_name; ?>[InputColour]')" />
-<label for="<?php echo $data_field_name; ?>[InputColour_On]"><?php _e( 'Custom', 'style-admin'); ?>
-</label>
-<div <?php if ($opt_val['InputColour_On']!='C') echo 'style="display: none;"'; ?> id="<?php echo $data_field_name; ?>[InputColour]">
-<input type="text" value="<?php echo $opt_val['InputColour']; ?>" name="<?php echo $data_field_name; ?>[InputColour]" class="my-color-picker" data-default-color="<?php echo $opt_val['InputColour']; ?>" />
-</div>
-<p class="description"><?php _e("Username/Password Box background colour", 'style-admin' ); ?><</p>
-</td>
-</tr>
+					<tr valign="top" style="height: 100px;">
+						<th scope="row"><label><?php _e("Username/Password Box background colour", 'style-admin' ); ?>:  </label></th>
+						<td>
+							<input type="radio" name="<?php echo $data_field_name; ?>[InputColour_On]" <?php if ($opt_val['InputColour_On'] != 'C') echo "checked";  ?> value="D" onClick="hideSelectColour('<?php echo $data_field_name; ?>[InputColour]')" />
+							<label for="<?php echo $data_field_name; ?>[InputColour_On]"><?php _e( 'Default', 'style-admin'); ?>
+							</label>
+							<input type="radio" name="<?php echo $data_field_name; ?>[InputColour_On]" <?php checked( 'C', $opt_val['InputColour_On'] ); ?> value="C" onClick="showSelectColour('<?php echo $data_field_name; ?>[InputColour]')" />
+							<label for="<?php echo $data_field_name; ?>[InputColour_On]"><?php _e( 'Custom', 'style-admin'); ?>
+							</label>
+							<div <?php if ($opt_val['InputColour_On']!='C') echo 'style="display: none;"'; ?> id="<?php echo $data_field_name; ?>[InputColour]">
+								<input type="text" value="<?php echo $opt_val['InputColour']; ?>" name="<?php echo $data_field_name; ?>[InputColour]" class="my-color-picker" data-default-color="<?php echo $opt_val['InputColour']; ?>" />
+							</div>
+							<p class="description"><?php _e("Username/Password Box background colour", 'style-admin' ); ?></p>
+						</td>
+					</tr>
 
 <tr valign="top" style="height: 100px;">
 <th scope="row"><label><?php _e("Submit button background color", 'style-admin' ); ?>:  </label></th>
@@ -418,14 +415,12 @@ function hideSelectColour(id) {
 </tbody></table>
 </div>
 </div>
-
 <hr/>
 <p class="submit">
 <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
 </p>
 </form>
 
-</div>
 </div>
 <?php
 }
